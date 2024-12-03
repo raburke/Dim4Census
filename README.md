@@ -9,7 +9,7 @@ In order to run the code within this repo, you will need `Regina` version 7.4 or
 3. Open a terminal and navigate to the folder.
 4. Type `regina-helper makefile` to build a makefile for your system.
 5. Type `make main` to compile the main program.
-6. Run the classification algorithm by typing `./main { census file }` where `{ census file }` is the path to one of the census files, e.g. `./main Census/2p-closedOrientable.esig`
+6. Run the classification algorithm by typing `./main { census file } [ -vTARGET_VERTICES ] [ -pTARGET_PENTACHORA ]` where `{ census file }` is the path to one of the census files; `v` and `p` are optional parameters to set target vertices and pentachora respectively.
 
 Note that this algorithm works with *edge degree* isomorphism signatures and not regular isomorphism signatures. 
 All of the census files in this repo have already been converted to edge degree iso sigs, so no conversion is required on these files.
