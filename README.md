@@ -11,7 +11,7 @@ In order to run the code within this repo, you will need `Regina` version 7.4 or
 5. Type `make main` to compile the main program.
 6. Run the classification algorithm by typing `./main { census file }` where `{ census file }` is the path to one of the census files, e.g. `./main Census/2p-closedOrientable.esig`
 
-Note that this algorithm works with *edge degree isomorphism signatures* and not regular isomorphism signatures. 
+Note that this algorithm works with *edge degree* isomorphism signatures and not regular isomorphism signatures. 
 All of the census files in this repo have already been converted to edge degree iso sigs, so no conversion is required on these files.
 If you need to convert other (standard) isomorphism signature to edge degree signatures, use the `T.isoSig_EdgeDegree()` function in `regina-python`.
 
