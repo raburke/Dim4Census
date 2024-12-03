@@ -181,9 +181,42 @@ bool step(regina::Triangulation<4>& tri, double xx, int balance, double scaling,
 	return false;			
 }
 
+void usage(const char* progName, const std::string& error = std::string()) {
+    if (!error.empty()) {
+        std::cerr << error << "\n\n";
+    }
+    std::cerr << "Usage:" << std::endl;
+    std::cerr << "      " << progName << " { census file } [ -v=targetVertices ] [ -p=targetPentachora ] \n";
+    exit(1);
+}
 
-int main() {
+bool argCharComp(char arr[], char c) {
+    return arr[0] == '-' && arr[1] == c;
+}
 
+int main(int argc, char* argv[]) {
+    std::string rawCensusFile;
+    if (argc < 2) {
+        usage(argv[0], "Error: No census file provided.");
+    }
+    if (2 < argc) {
+        for (int i=2; i<argc; ++i) {
+            if (argCharComp(argv[i],'v')) {
+                targetVertices = std::stoi(argv[i]+=2);
+            }
+            else if (argCharComp(argv[i],'p')) {
+                targetPentachora = std::stoi(argv[i]+=2);
+            }
+            else {
+                usage(argv[0],std::string("Invalid Option: ")+argv[i]);
+            }
+        }
+    }
+//    else {
+        rawCensusFile = argv[1];
+//    }
+    const char* censusFile = rawCensusFile.c_str();
+    
 // use different random seed for every run
 srand((unsigned)time(0));
 
@@ -225,7 +258,7 @@ regina::Triangulation<4> curTriangulation, seed;
 
 // Load census into triangulation set data union find data structure
 std::cout << "Load census ";
-TriangulationSet census("Census/6p-Sorted/6p-TOP-S4.esig");
+TriangulationSet census(censusFile);
 std::cout << " ...done: " << census.countComponents() << " triangulations loaded." << std::endl;
 
 
