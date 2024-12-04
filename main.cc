@@ -3,10 +3,11 @@
 #include <random>
 #include <iostream>
 #include <ctime>
+#include <algorithm>
 
 // Global variables to be place in proper place later.
-int targetVertices = 2;
-int targetPentachora = 6;
+int targetVertices = -1;
+int targetPentachora = -1;
 
 double randd() {
 	return ((double)rand() / (RAND_MAX + 1.0));
@@ -225,7 +226,7 @@ srand((unsigned)time(0));
 // probability of choosing 3-3 over up down
 double xx = 0.1;
 // preferred size
-int balance = 9;
+int balance = 2 * targetPentachora - 3;
 // aggressiveness
 double scaling = 1.0;
 
@@ -261,6 +262,23 @@ std::cout << "Load census ";
 TriangulationSet census(censusFile);
 std::cout << " ...done: " << census.countComponents() << " triangulations loaded." << std::endl;
 
+    /*
+     If no targetVertices or targetPentachora were given at runtime,
+     look at the first triangulation in the file and set:
+            - targetVertices = \chi(FIRST_TRIANGULATION)
+            - targetPentachora = FIRST_TRIANGULATION.size()
+     */
+
+    regina::Triangulation<4> firstTri = census.components().rep();
+    if (targetVertices == -1) {
+        // todo: take max
+        targetVertices = std::max(1,(int)firstTri.eulerCharTri());
+    }
+    if (targetPentachora == -1) {
+        targetPentachora = firstTri.size();
+    }
+    
+    std::cerr << "Target vertices: " << targetVertices << ", Target pentachora: " << targetPentachora << std::endl;
 
 /* first iteration through data structure:
 
@@ -335,7 +353,7 @@ tm = time(NULL);
 std::cout << "DONE WITH SECOND PART." << std::endl;
 
 
-balance = 12;
+balance = targetPentachora * 2;
 scaling = 0.9;
 std::cout << "Changing balance and scaling to " << balance << " and " << scaling << "." << std::endl;
 numComponents = census.countComponents();
