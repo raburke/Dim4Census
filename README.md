@@ -1,7 +1,7 @@
 # README
 This repository contains source code related to classifying the census of closed orientable 4-manifolds triangulated with up to six pentachora.
 
-In order to run the code within this repo, you will need `Regina` version 7.4 or higher, or a build from [the Regina git repository](https://github.com/regina-normal/regina).
+In order to run the code within this repo, you will need `Regina 7.4` or newer, or a build from [the Regina git repository](https://github.com/regina-normal/regina).
 
 ## Installation Instructions
 
