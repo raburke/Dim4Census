@@ -11,8 +11,8 @@ In order to run the code within this repo, you will need `Regina` version 7.4 or
 5. Type `make main` to compile the main program.
 6. Run the classification algorithm by typing `./main { CENSUS_FILE } [ -vTARGET_VERTICES ] [ -pTARGET_PENTACHORA ]` where:
    - `{ CENSUS_FILE }` is the path to a census file; and
-   - `v` and `p` are optional parameters to set target vertices and pentachora respectively.\ \
-By default `TARGET_VERTICES` is set to $\chi(\mathcal{T}_0) + 1$, where $\mathcal{T}_0$ is the first triangulation read from `CENSUS_FILE`, $\chi(\mathcal{T_0})$ is the Euler characteristic of $\mathcal{T}_0$. Similarly `TARGET_PENTACHORA` is by default set to $|\mathcal{T}_0|$, i.e. the number of pentachora in $\mathcal{T_0}$.
+   - `v` and `p` are optional parameters to set target vertices and pentachora respectively.\
+\By default `TARGET_VERTICES` is set to $\chi(\mathcal{T}_0) + 1$, where $\mathcal{T}_0$ is the first triangulation read from `CENSUS_FILE`, $\chi(\mathcal{T_0})$ is the Euler characteristic of $\mathcal{T}_0$. Similarly `TARGET_PENTACHORA` is by default set to $|\mathcal{T}_0|$, i.e. the number of pentachora in $\mathcal{T_0}$.
 
 Note that this algorithm works with *edge degree* isomorphism signatures and not regular isomorphism signatures. 
 All of the census files in this repo have already been converted to edge degree iso sigs, so no conversion is required on these files.
